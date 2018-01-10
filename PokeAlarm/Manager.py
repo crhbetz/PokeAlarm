@@ -482,6 +482,8 @@ class Manager(object):
         # Check the Filters
         passed = False
         for name, f in self.__mon_filters.iteritems():
+            if f.location:
+                mon.distance = get_earth_dist([mon.lat, mon.lng], f.location)
             passed = f.check_event(mon) and self.check_geofences(f, mon)
             if passed:
                 mon.custom_dts = f.custom_dts
