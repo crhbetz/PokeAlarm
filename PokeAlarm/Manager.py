@@ -540,6 +540,11 @@ class Manager(object):
         for r_name, rule in rules.iteritems():  # For all rules
             for f_name in rule.filter_names:  # Check Filters in Rules
                 f = self.__mon_filters.get(f_name)
+                if f.location:
+                    mon.distance = get_earth_dist([mon.lat, mon.lng],
+                                                  f.location)
+                    mon.direction = get_cardinal_dir([mon.lat, mon.lng],
+                                                     f.location)
                 passed = f.check_event(mon) and self.check_geofences(f, mon)
                 if not passed:
                     continue  # go to next filter

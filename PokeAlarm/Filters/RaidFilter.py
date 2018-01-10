@@ -110,6 +110,9 @@ class RaidFilter(BaseFilter):
         # Geofences
         self.geofences = BaseFilter.parse_as_list(str, 'geofences', data)
 
+        # Location
+        self.location = BaseFilter.parse_location(data)
+
         # Custom DTS
         self.custom_dts = BaseFilter.parse_as_dict(
             str, str, 'custom_dts', data)
