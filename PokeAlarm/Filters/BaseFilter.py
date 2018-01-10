@@ -1,6 +1,7 @@
 # Standard Library Imports
 import logging
 import json
+import re
 # 3rd Party Imports
 # Local Imports
 from PokeAlarm import Unknown
@@ -117,6 +118,25 @@ class BaseFilter(object):
                     'parameter name "{}"'.format(k, v, param_name))
         return out
 
+    @staticmethod
+    def parse_location(data):
+        location = data.pop("location", "")
+        prog = re.compile("^(-?\d+\.\d+)[,\s]\s*(-?\d+\.\d+?)$")
+        res = prog.match(location)
+        if res:  # If location is in a Lat,Lng coordinate
+            result = [float(res.group(1)), float(res.group(2))]
+        else:
+            log.error("Can't parse names within filters yet.")
+            return None
+
+        if not result:
+            log.error("Unable to set location - "
+                      + "Please check your settings and try again.")
+            return None
+        else:
+            log.info("Filter location successfully set to '{},{}'.".format(
+            result[0], result[1]))
+            return result
 
 class CheckFunction(object):
     """ Function used to check if an event passes or not. """
