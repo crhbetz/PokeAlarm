@@ -126,6 +126,8 @@ def parse_settings(root_path):
     parser.add_argument(
         '-d', '--debug', help='Debug Mode', action='store_true', default=False)
     parser.add_argument(
+        '-s', '--silent', help='Silent Mode', action='store_true', default=False)
+    parser.add_argument(
         '-H', '--host', help='Set web server listening host',
         default='127.0.0.1')
     parser.add_argument(
@@ -212,6 +214,7 @@ def parse_settings(root_path):
         '-ma', '--max_attempts', type=int, default=[3], action='append',
         help='Maximum attempts an alarm makes to send a notification.')
 
+
     args = parser.parse_args()
 
     if args.debug:
@@ -220,6 +223,13 @@ def parse_settings(root_path):
         logging.getLogger('PokeAlarm').setLevel(logging.DEBUG)
         logging.getLogger('Manager').setLevel(logging.DEBUG)
         log.debug("Debug mode enabled!")
+
+    if args.silent:
+        log.setLevel(logging.WARNING)
+        logging.getLogger().setLevel(logging.WARNING)
+        logging.getLogger('PokeAlarm').setLevel(logging.WARNING)
+        logging.getLogger('Manager').setLevel(logging.WARNING)
+        log.warning("Silent mode enabled!")
 
     config['HOST'] = args.host
     config['PORT'] = args.port
