@@ -139,13 +139,16 @@ class BaseFilter(object):
 
     @staticmethod
     def parse_location(data):
-        location = data.pop("location", "")
+        location = data.pop("location", [])
+        if not location:
+            return None
         prog = re.compile("^(-?\d+\.\d+)[,\s]\s*(-?\d+\.\d+?)$")
         res = prog.match(location)
         if res:  # If location is in a Lat,Lng coordinate
             result = [float(res.group(1)), float(res.group(2))]
         else:
-            log.error("Can't parse names within filters yet.")
+            # TODO: should use location service here
+            log.error("Location service for filters not yet implemented.")
             return None
 
         if not result:
