@@ -486,6 +486,7 @@ class Manager(object):
         for name, f in self.__mon_filters.iteritems():
             if f.location:
                 mon.distance = get_earth_dist([mon.lat, mon.lng], f.location)
+                mon.direction = get_cardinal_dir([mon.lat, mon.lng], f.location)
             passed = f.check_event(mon) and self.check_geofences(f, mon)
             if passed:
                 mon.custom_dts = f.custom_dts
