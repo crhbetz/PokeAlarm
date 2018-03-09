@@ -36,7 +36,7 @@ class TelegramAlarm(Alarm):
             'message': "*A wild <mon_name> has appeared!*\n"
                        "Available until <24h_time> (<time_left>).",
             'sticker_url': get_image_url(
-                "telegram/monsters/<mon_id_3>_<form_id_3>.webp")
+                "telegram/monsters/<mon_id_3>_000.webp")
         },
         'stops': {
             'message': "*Someone has placed a lure on a Pokestop!*\n"
@@ -195,13 +195,13 @@ class TelegramAlarm(Alarm):
                 bot_token, chat_id, lat, lng, message, max_attempts)
             return  # Don't send message or map
 
-        # Send Message
-        self.send_message(bot_token, chat_id, replace(message, dts),
-                          web_preview=alert.web_preview)
-
         # Send Map
         if alert.map:
             self.send_location(bot_token, chat_id, lat, lng, max_attempts)
+
+        # Send Message
+        self.send_message(bot_token, chat_id, replace(message, dts),
+                          web_preview=alert.web_preview)
 
     # Trigger an alert based on Pokemon info
     def pokemon_alert(self, mon_dts):
