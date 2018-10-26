@@ -13,6 +13,30 @@ class TestEggFilter(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def gen_filter(self, settings):
+        """ Generate a generic filter with given settings. """
+        return Filters.EggFilter(self._mgr, "testfilter", settings)
+
+    def gen_event(self, values):
+        """ Generate a generic egg, overriding with an specific values. """
+        settings = {
+            "gym_id": "OWNmOTFmMmM0YTY3NGQwYjg0Y2I1N2JlZjU4OWRkMTYuMTY=",
+            "url": "???",
+            "name": "unknown",
+            "description": "???",
+            "start": 1499244052,
+            "end": 1499246052,
+            "level": 5,
+            "latitude": 37.7876146,
+            "longitude": -122.390624,
+            "sponsor": None,
+            "park": None,
+            "is_ex_raid_eligible": None
+        }
+        settings.update(values)
+        return Events.EggEvent(settings)
+
+    @generic_filter_test
     def test_egg_lvl(self):
         # Create the filters
         settings = {"min_egg_lvl": 2, "max_egg_lvl": 4}
@@ -226,6 +250,22 @@ def generate_egg(values):
     }
     egg.update(values)
     return egg
+
+    def test_is_ex_eligible(self):
+        # Create the filters
+        eligible = self.gen_filter({"is_ex_eligible": True})
+        not_eligible = self.gen_filter({"is_ex_eligible": False})
+
+        ex_event = self.gen_event({"is_ex_raid_eligible": True})
+        not_ex_event = self.gen_event({"is_ex_raid_eligible": False})
+
+        # Test passing
+        self.assertTrue(eligible.check_event(ex_event))
+        self.assertTrue(not_eligible.check_event(not_ex_event))
+
+        # Test failing
+        self.assertFalse(eligible.check_event(not_ex_event))
+        self.assertFalse(not_eligible.check_event(ex_event))
 
 
 if __name__ == '__main__':
