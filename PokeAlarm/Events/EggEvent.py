@@ -21,7 +21,7 @@ class EggEvent(BaseEvent):
 
         # Time Remaining
         self.hatch_time = datetime.utcfromtimestamp(
-            data.get('start') or data.get('raid_begin'))  # RM or Monocle
+            float(data.get('start')) or data.get('raid_begin'))  # RM or Monocle
         self.time_left = get_seconds_remaining(self.hatch_time)
         self.raid_end = datetime.utcfromtimestamp(
             data.get('end') or data.get('raid_end'))  # RM or Monocle
