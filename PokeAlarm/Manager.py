@@ -542,9 +542,9 @@ class Manager(object):
             if f:
                 # If the Event passes, return True
                 if f.location:
-                    mon.distance = get_earth_dist([mon.lat, mon.lng],
+                    event.distance = get_earth_dist([event.lat, event.lng],
                                                   f.location)
-                    mon.direction = get_cardinal_dir([mon.lat, mon.lng],
+                    event.direction = get_cardinal_dir([event.lat, event.lng],
                                                      f.location)
                 if f.check_event(event) and self.check_geofences(f, event):
                     event.custom_dts = f.custom_dts
@@ -596,7 +596,7 @@ class Manager(object):
 
         # Check if previously processed and update expiration
         if self.__cache.monster_expiration(str(mon.enc_id) + str(mon.weight)) is not None:
-            log.debug("{} monster was skipped because it was previously "
+            self._log.debug("{} monster was skipped because it was previously "
                       "processed.".format(mon.name))
             return
         self.__cache.monster_expiration(str(mon.enc_id) + str(mon.weight), mon.disappear_time)

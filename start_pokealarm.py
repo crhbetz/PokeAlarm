@@ -123,10 +123,6 @@ def parse_settings(root_path):
 
     # Webserver Settings:
     parser.add_argument(
-        '-d', '--debug', help='Debug Mode', action='store_true', default=False)
-    parser.add_argument(
-        '-s', '--silent', help='Silent Mode', action='store_true', default=False)
-    parser.add_argument(
         '-H', '--host', help='Set web server listening host',
         default='127.0.0.1')
     parser.add_argument(
@@ -281,13 +277,6 @@ def parse_settings(root_path):
     elif args.log_lvl == 5:
         logging.getLogger('pokealarm.webserver').setLevel(logging.DEBUG)
         logging.getLogger('pokealarm.setup').setLevel(logging.DEBUG)
-
-    if args.silent:
-        log.setLevel(logging.WARNING)
-        logging.getLogger().setLevel(logging.WARNING)
-        logging.getLogger('PokeAlarm').setLevel(logging.WARNING)
-        logging.getLogger('Manager').setLevel(logging.WARNING)
-        log.warning("Silent mode enabled!")
 
     config['HOST'] = args.host
     config['PORT'] = args.port
