@@ -1,8 +1,8 @@
 {
   "severity": {
     "000": "Nessuno",
-    "001": "Moderato",
-    "003": "Estremo"
+    "001": "Attenzione",
+    "002": "Estremo"
   },
   "costumes": {
     "025": {
@@ -172,7 +172,8 @@
       "901": "Vs 2019",
       "949": "Copy 2019",
       "977": "Ombra",
-      "978": "Purificati"
+      "978": "Purificati",
+      "2332": "Costume 2020"
     },
     "026": {
       "049": "Normale",
@@ -315,7 +316,8 @@
       "063": "Normale",
       "064": "Alola",
       "709": "Ombra",
-      "710": "Purificato"
+      "710": "Purificato",
+      "2335": "Galarian"
     },
     "053": {
       "065": "Normale",
@@ -471,6 +473,12 @@
       "659": "Ombra",
       "660": "Purificato"
     },
+    "083": {
+      "1023": "Normale",
+      "1024": "Ombra",
+      "1025": "Purificati",
+      "2338": "Galarian"
+    },
     "084": {
       "1026": "Normale",
       "1027": "Ombra",
@@ -531,7 +539,8 @@
     "095": {
       "902": "Normale",
       "903": "Ombra",
-      "904": "Purificati"
+      "904": "Purificati",
+      "2334": "Costume 2020"
     },
     "096": {
       "214": "Normale",
@@ -799,7 +808,8 @@
     "149": {
       "196": "Normale",
       "197": "Ombra",
-      "198": "Purificato"
+      "198": "Purificato",
+      "2333": "Costume 2020"
     },
     "150": {
       "133": "Armored",
@@ -2903,11 +2913,14 @@
     "554": {
       "2063": "Normale",
       "2064": "Ombra",
-      "2065": "Purificati"
+      "2065": "Purificati",
+      "2341": "Galarian"
     },
     "555": {
       "138": "Standard",
-      "139": "Zen"
+      "139": "Zen",
+      "2342": "Galarian Standard",
+      "2343": "Galarian Zen"
     },
     "556": {
       "2066": "Normale",
@@ -3094,12 +3107,14 @@
     "592": {
       "2168": "Normale",
       "2169": "Ombra",
-      "2170": "Purificati"
+      "2170": "Purificati",
+      "2330": "Femmina"
     },
     "593": {
       "2171": "Normale",
       "2172": "Ombra",
-      "2173": "Purificati"
+      "2173": "Purificati",
+      "2331": "Femmina"
     },
     "594": {
       "2174": "Normale",
@@ -3224,7 +3239,8 @@
     "618": {
       "2246": "Normale",
       "2247": "Ombra",
-      "2248": "Purificati"
+      "2248": "Purificati",
+      "2345": "Galarian"
     },
     "619": {
       "2249": "Normale",
@@ -3392,6 +3408,16 @@
       "815": "Normale",
       "816": "Ombra",
       "817": "Purificato"
+    },
+    "808": {
+      "2321": "Normale",
+      "2322": "Ombra",
+      "2323": "Purificati"
+    },
+    "809": {
+      "2324": "Normale",
+      "2325": "Ombra",
+      "2326": "Purificati"
     }
   },
   "grunt_types": {
@@ -3445,6 +3471,67 @@
     "048": "Fantasma",
     "049": "Elettrico",
     "050": "Elettrico"
+  },
+  "items": {
+    "0000": "Unknown",
+    "0001": "Pok\u00E9 Ball",
+    "0002": "Mega Ball",
+    "0003": "Ultra Ball",
+    "0004": "Master Ball",
+    "0005": "Premier Ball",
+    "0101": "Pozione",
+    "0102": "Superpozione",
+    "0103": "Iperpozione",
+    "0104": "Pozione Max",
+    "0201": "Revitalizzante",
+    "0202": "Revitalizzante Max",
+    "0301": "Fortunuovo",
+    "0401": "Aroma",
+    "0402": "Incenso Piccante",
+    "0403": "Incenso Fresco",
+    "0404": "Incenso Fresco",
+    "0405": "Pacco sorpresa",
+    "0501": "Modulo esca",
+    "0502": "Modulo esca glaciale",
+    "0503": "Modulo esca silvestre",
+    "0504": "Modulo esca magnetico",
+    "0602": "Attacco X",
+    "0603": "Difesa X",
+    "0604": "Miracolo X",
+    "0701": "Baccalampon",
+    "0702": "Baccamora",
+    "0703": "Baccabana",
+    "0704": "Baccapera",
+    "0705": "Baccananas",
+    "0706": "Baccalampon dorata",
+    "0707": "Baccalampon d'argento",
+    "0708": "Baccananas d'argento",
+    "0801": "Fotocamera",
+    "0901": "Incubatrice Uova Illimitato",
+    "0902": "Incubatrice Uova",
+    "0903": "Superincubatrice",
+    "1001": "Aggiornamento Dello Spazio di Archiviazione Pok\u00E9mon",
+    "1002": "Aggiornamento Dello Spazio di Archiviazione Degli Elementi",
+    "1101": "Pietrasolare",
+    "1102": "Roccia di Re",
+    "1103": "Metalcoperta",
+    "1104": "Squama Drago",
+    "1105": "Upgrade",
+    "1106": "Pietra Sinnoh",
+    "1107": "Pietra Unima",
+    "1201": "MT attacco veloce",
+    "1202": "MT attacco caricato",
+    "1301": "Caramella Rara",
+    "1401": "Biglietto raid",
+    "1402": "Biglietto raid premium",
+    "1403": "Biglietto raid EX",
+    "1404": "Pezzo Stella",
+    "1405": "Pacco amicizia",
+    "1406": "Medaglione delle squadre",
+    "1501": "Componente misterioso",
+    "1502": "Radar Rocket",
+    "1503": "Super radar Rocket",
+    "1600": "Biglietto"
   },
   "leaders": {
     "000": "Professor Willow",
@@ -4372,7 +4459,7 @@
     "720": "Hoopa",
     "721": "Volcanion"
   },
-  "quest_types": {
+  "quest_reward_types": {
     "000": "unset",
     "001": "Esperienza",
     "002": "Articolo",
@@ -4402,6 +4489,12 @@
     "001": "Saggezza",
     "002": "Coraggio",
     "003": "Istinto"
+  },
+  "team_colors": {
+    "000": "bianco",
+    "001": "blu",
+    "002": "rosso",
+    "003": "giallo"
   },
   "types": {
     "001": "Normale",

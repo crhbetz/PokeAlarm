@@ -7,7 +7,7 @@ import PokeAlarm.Events as Events
 
 # ToDo: Find a better way
 # Reinforce UTF-8 as default
-from tests.filters import MockManager, generic_filter_test
+from tests.filters import MockManager, generic_filter_test, full_filter_test
 
 reload(sys)
 sys.setdefaultencoding('UTF8')
@@ -163,11 +163,25 @@ class TestMonsterFilter(unittest.TestCase):
         self.fail_vals = [2, 999]
 
     @generic_filter_test
+    def test_form_exclude(self):
+        self.filt = {'exclude_forms': [1, 3, '55']}
+        self.event_key = 'form'
+        self.pass_vals = [2, 4, '111']
+        self.fail_vals = [1, 3, '55']
+
+    @generic_filter_test
     def test_costume(self):
         self.filt = {"costume_ids": [1, 2]}
         self.event_key = "costume"
         self.pass_vals = [1, 2]
         self.fail_vals = [3, 999]
+
+    @generic_filter_test
+    def test_costume_exclude(self):
+        self.filt = {'exclude_costumes': ['123', 1, 2]}
+        self.event_key = 'costume'
+        self.pass_vals = [111, 3, '1234']
+        self.fail_vals = [1, 2, '123']
 
     @generic_filter_test
     def test_quick_move(self):
@@ -285,6 +299,178 @@ class TestMonsterFilter(unittest.TestCase):
             t = time.mktime(d.timetuple())
             event = self.gen_event({"disappear_time": t})
             self.assertFalse(filt.check_event(event))
+
+    @full_filter_test
+    def test_pvp_min_max_great(self):
+        self.filt = {'min_great': 56, 'max_great': 95}
+        self.pass_items = [
+            # 10 -> 11: 95% max stat
+            {
+                "pokemon_id": 10,
+                "individual_attack": 15,
+                "individual_defense": 15,
+                "individual_stamina": 8
+            },
+            # 94.41% max stat
+            {
+                "pokemon_id": 15,
+                "individual_attack": 0,
+                "individual_defense": 0,
+                "individual_stamina": 0
+            },
+            # 56.26% max stat
+            {
+                "pokemon_id": 235,
+                "individual_attack": 0,
+                "individual_defense": 0,
+                "individual_stamina": 2
+            }
+        ]
+        self.fail_items = [
+            # 100% Max Stat
+            {
+                "pokemon_id": 227,
+                "individual_attack": 0,
+                "individual_defense": 15,
+                "individual_stamina": 14
+            },
+            # 95.16% max stat
+            {
+                "pokemon_id": 15,
+                "individual_attack": 0,
+                "individual_defense": 2,
+                "individual_stamina": 0
+            },
+            # 55.78% max stat
+            {
+                "pokemon_id": 235,
+                "individual_attack": 0,
+                "individual_defense": 0,
+                "individual_stamina": 0
+            }
+        ]
+
+    @full_filter_test
+    def test_min_cp_great(self):
+        self.filt = {'min_cp_great': 1000}
+        self.pass_items = [
+            # 1499 CP
+            {
+                'pokemon_id': 248,
+                'individual_attack': 0,
+                'individual_defense': 15,
+                'individual_stamina': 15
+            },
+            # 1487 CP
+            {
+                'pokemon_id': 12,
+                'individual_attack': 15,
+                'individual_defense': 15,
+                'individual_stamina': 15
+            },
+            # 1484 CP
+            {
+                'pokemon_id': 460,
+                'individual_attack': 15,
+                'individual_defense': 15,
+                'individual_stamina': 15
+            }
+        ]
+        self.fail_items = [
+            # 431 CP
+            {
+                'pokemon_id': 235,
+                'individual_attack': 15,
+                'individual_defense': 15,
+                'individual_stamina': 15
+            }
+        ]
+
+    @full_filter_test
+    def test_pvp_min_max_ultra(self):
+        self.filt = {'min_ultra': 56, 'max_ultra': 95}
+        self.pass_items = [
+            # 10 -> 12: 94.78% max stat
+            {
+                "pokemon_id": 10,
+                "individual_attack": 15,
+                "individual_defense": 15,
+                "individual_stamina": 6
+            },
+            # 75.29% max stat
+            {
+                "pokemon_id": 15,
+                "individual_attack": 0,
+                "individual_defense": 0,
+                "individual_stamina": 0
+            },
+            # 56.26% max stat
+            {
+                "pokemon_id": 235,
+                "individual_attack": 0,
+                "individual_defense": 0,
+                "individual_stamina": 2
+            }
+        ]
+        self.fail_items = [
+            # 100% Max Stat
+            {
+                "pokemon_id": 227,
+                "individual_attack": 15,
+                "individual_defense": 15,
+                "individual_stamina": 15
+            },
+            # 95.11% max stat
+            {
+                "pokemon_id": 15,
+                "individual_attack": 6,
+                "individual_defense": 15,
+                "individual_stamina": 15
+            },
+            # 55.78% max stat
+            {
+                "pokemon_id": 235,
+                "individual_attack": 0,
+                "individual_defense": 0,
+                "individual_stamina": 0
+            }
+        ]
+
+    @full_filter_test
+    def test_min_cp_ultra(self):
+        self.filt = {'min_cp_ultra': 2000}
+        self.pass_items = [
+            # 2465 CP
+            {
+                'pokemon_id': 248,
+                'individual_attack': 0,
+                'individual_defense': 0,
+                'individual_stamina': 0
+            },
+            # 2471 CP
+            {
+                'pokemon_id': 130,
+                'individual_attack': 15,
+                'individual_defense': 15,
+                'individual_stamina': 15
+            },
+            # 2465 CP
+            {
+                'pokemon_id': 473,
+                'individual_attack': 0,
+                'individual_defense': 15,
+                'individual_stamina': 15
+            }
+        ]
+        self.fail_items = [
+            # 431 CP
+            {
+                'pokemon_id': 235,
+                'individual_attack': 15,
+                'individual_defense': 15,
+                'individual_stamina': 15
+            }
+        ]
 
 
 if __name__ == '__main__':

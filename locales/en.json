@@ -1,8 +1,8 @@
 {
   "severity": {
     "000": "None",
-    "001": "Moderate",
-    "003": "Extreme"
+    "001": "Careful",
+    "002": "Extreme"
   },
   "costumes": {
     "025": {
@@ -172,7 +172,8 @@
       "901": "Vs 2019",
       "949": "Copy 2019",
       "977": "Shadow",
-      "978": "Purified"
+      "978": "Purified",
+      "2332": "Costume 2020"
     },
     "026": {
       "049": "Normal",
@@ -315,7 +316,8 @@
       "063": "Normal",
       "064": "Alolan",
       "709": "Shadow",
-      "710": "Purified"
+      "710": "Purified",
+      "2335": "Galarian"
     },
     "053": {
       "065": "Normal",
@@ -471,6 +473,12 @@
       "659": "Shadow",
       "660": "Purified"
     },
+    "083": {
+      "1023": "Normal",
+      "1024": "Shadow",
+      "1025": "Purified",
+      "2338": "Galarian"
+    },
     "084": {
       "1026": "Normal",
       "1027": "Shadow",
@@ -531,7 +539,8 @@
     "095": {
       "902": "Normal",
       "903": "Shadow",
-      "904": "Purified"
+      "904": "Purified",
+      "2334": "Costume 2020"
     },
     "096": {
       "214": "Normal",
@@ -799,7 +808,8 @@
     "149": {
       "196": "Normal",
       "197": "Shadow",
-      "198": "Purified"
+      "198": "Purified",
+      "2333": "Costume 2020"
     },
     "150": {
       "133": "Armored",
@@ -2903,11 +2913,14 @@
     "554": {
       "2063": "Normal",
       "2064": "Shadow",
-      "2065": "Purified"
+      "2065": "Purified",
+      "2341": "Galarian"
     },
     "555": {
       "138": "Standard",
-      "139": "Zen"
+      "139": "Zen",
+      "2342": "Galarian Standard",
+      "2343": "Galarian Zen"
     },
     "556": {
       "2066": "Normal",
@@ -3094,12 +3107,14 @@
     "592": {
       "2168": "Normal",
       "2169": "Shadow",
-      "2170": "Purified"
+      "2170": "Purified",
+      "2330": "Female"
     },
     "593": {
       "2171": "Normal",
       "2172": "Shadow",
-      "2173": "Purified"
+      "2173": "Purified",
+      "2331": "Female"
     },
     "594": {
       "2174": "Normal",
@@ -3224,7 +3239,8 @@
     "618": {
       "2246": "Normal",
       "2247": "Shadow",
-      "2248": "Purified"
+      "2248": "Purified",
+      "2345": "Galarian"
     },
     "619": {
       "2249": "Normal",
@@ -3392,6 +3408,16 @@
       "815": "Normal",
       "816": "Shadow",
       "817": "Purified"
+    },
+    "808": {
+      "2321": "Normal",
+      "2322": "Shadow",
+      "2323": "Purified"
+    },
+    "809": {
+      "2324": "Normal",
+      "2325": "Shadow",
+      "2326": "Purified"
     }
   },
   "grunt_genders": {
@@ -3497,6 +3523,68 @@
     "048": "Ghost",
     "049": "Electric",
     "050": "Electric"
+  },
+  "items": {
+    "0000": "Unknown",
+    "0001": "Pok\u00E9 Ball",
+    "0002": "Great Ball",
+    "0003": "Ultra Ball",
+    "0004": "Master Ball",
+    "0005": "Premier Ball",
+    "0101": "Potion",
+    "0102": "Super Potion",
+    "0103": "Hyper Potion",
+    "0104": "Max Potion",
+    "0201": "Revive",
+    "0202": "Max Revive",
+    "0301": "Lucky Egg",
+    "0401": "Incense",
+    "0402": "Spicy Incense",
+    "0403": "Cool Incense",
+    "0404": "Floral Incense",
+    "0405": "Mystery Box",
+    "0501": "Lure Module",
+    "0502": "Glacial Lure Module",
+    "0503": "Mossy Lure Module",
+    "0504": "Magnetic Lure Module",
+    "0602": "X-Attack",
+    "0603": "X-Defense",
+    "0604": "X-Miracle",
+    "0701": "Razz Berry",
+    "0702": "Bluk Berry",
+    "0703": "Nanab Berry",
+    "0704": "Wepar Berry",
+    "0705": "Pinap Berry",
+    "0706": "Golden Razz Berry",
+    "0707": "Golden Nanab Berry",
+    "0708": "Silver Pinap Berry",
+    "0709": "Poffin",
+    "0801": "Camera",
+    "0901": "Unlimited Incubator",
+    "0902": "Incubator",
+    "0903": "Super Incubator",
+    "1001": "Pokemon Storage Upgrade",
+    "1002": "Item Storage Upgrade",
+    "1101": "Sun Stone",
+    "1102": "Kings Rock",
+    "1103": "Metal Coat",
+    "1104": "Dragon Scale",
+    "1105": "Up Grade",
+    "1106": "Sinnoh Stone",
+    "1107": "Unova Stone",
+    "1201": "Fast TM",
+    "1202": "Charge TM",
+    "1301": "Rare Candy",
+    "1401": "Free Raid Pass",
+    "1402": "Paid Raid Pass",
+    "1403": "Legendary Raid Pass",
+    "1404": "Star Piece",
+    "1405": "Gift",
+    "1406": "Team Change Medallion",
+    "1501": "Leader Map Fragment",
+    "1502": "Leader Map",
+    "1503": "Giovanni Map",
+    "1600": "Global Event Ticket"
   },
   "leaders": {
     "000": "Professor Willow",
@@ -4541,7 +4629,7 @@
     "808": "Meltan",
     "809": "Melmetal"
   },
-  "quest_types": {
+  "quest_reward_types": {
     "000": "Unset",
     "001": "Experience",
     "002": "Item",
@@ -4571,6 +4659,12 @@
     "001": "Mystic",
     "002": "Valor",
     "003": "Instinct"
+  },
+  "team_colors": {
+    "000": "White",
+    "001": "Blue",
+    "002": "Red",
+    "003": "Yellow"
   },
   "types": {
     "001": "Normal",

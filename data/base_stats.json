@@ -6915,15 +6915,15 @@
   },
   "474": {
     "attack": 264,
-    "defense": 153,
-    "stamina": 170,
+    "defense": 150,
+    "stamina": 198,
     "type1": 1,
     "legendary": false,
     "generation": 4,
     "weight": 34,
     "height": 0.89,
-    "1500_product": 1487231.1724411456,
-    "2500_product": 3213089.050154683,
+    "1500_product": 1538737.832,
+    "2500_product": 3304825.408,
     "evolutions": []
   },
   "475": {

@@ -1,8 +1,8 @@
 {
   "severity": {
     "000": "Keins",
-    "001": "M\u00E4\u00DFig",
-    "003": "Extrem"
+    "001": "Vorsicht",
+    "002": "Extrem"
   },
   "costumes": {
     "025": {
@@ -172,7 +172,8 @@
       "901": "Vs 2019",
       "949": "Copy 2019",
       "977": "Crypto",
-      "978": "Erl\u00F6st"
+      "978": "Erl\u00F6st",
+      "2332": "Kost\u00FCm 2020"
     },
     "026": {
       "049": "Normal",
@@ -315,7 +316,8 @@
       "063": "Normal",
       "064": "Alola",
       "709": "Crypto",
-      "710": "Erl\u00F6st"
+      "710": "Erl\u00F6st",
+      "2335": "Galar"
     },
     "053": {
       "065": "Normal",
@@ -471,6 +473,12 @@
       "659": "Crypto",
       "660": "Erl\u00F6st"
     },
+    "083": {
+      "1023": "Normalform",
+      "1024": "Crypto",
+      "1025": "Erl\u00F6st",
+      "2338": "Galar"
+    },
     "084": {
       "1026": "Normal",
       "1027": "Crypto",
@@ -531,7 +539,8 @@
     "095": {
       "902": "Normal",
       "903": "Crypto",
-      "904": "Erl\u00F6st"
+      "904": "Erl\u00F6st",
+      "2334": "Kost\u00FCm 2020"
     },
     "096": {
       "214": "Normal",
@@ -609,7 +618,7 @@
       "706": "Normal",
       "707": "Crypto",
       "708": "Erl\u00F6st",
-      "944": "Galarian"
+      "944": "Galar"
     },
     "111": {
       "846": "Normal",
@@ -799,7 +808,8 @@
     "149": {
       "196": "Normal",
       "197": "Crypto",
-      "198": "Erl\u00F6st"
+      "198": "Erl\u00F6st",
+      "2333": "Kost\u00FCm 2020"
     },
     "150": {
       "133": "Armored",
@@ -1396,13 +1406,13 @@
     },
     "263": {
       "945": "Normal",
-      "946": "Galarian",
+      "946": "Galar",
       "1373": "Crypto",
       "1374": "Erl\u00F6st"
     },
     "264": {
       "947": "Normal",
-      "948": "Galarian",
+      "948": "Galar",
       "1375": "Crypto",
       "1376": "Erl\u00F6st"
     },
@@ -2903,11 +2913,14 @@
     "554": {
       "2063": "Normal",
       "2064": "Crypto",
-      "2065": "Erl\u00F6st"
+      "2065": "Erl\u00F6st",
+      "2341": "Galar"
     },
     "555": {
       "138": "Standard",
-      "139": "Zen"
+      "139": "Zen",
+      "2342": "Galar Standard",
+      "2343": "Galar Zen"
     },
     "556": {
       "2066": "Normal",
@@ -3094,12 +3107,14 @@
     "592": {
       "2168": "Normal",
       "2169": "Crypto",
-      "2170": "Erl\u00F6st"
+      "2170": "Erl\u00F6st",
+      "2330": "Weiblich"
     },
     "593": {
       "2171": "Normal",
       "2172": "Crypto",
-      "2173": "Erl\u00F6st"
+      "2173": "Erl\u00F6st",
+      "2331": "Weiblich"
     },
     "594": {
       "2174": "Normal",
@@ -3224,7 +3239,8 @@
     "618": {
       "2246": "Normal",
       "2247": "Crypto",
-      "2248": "Erl\u00F6st"
+      "2248": "Erl\u00F6st",
+      "2345": "Galar"
     },
     "619": {
       "2249": "Normal",
@@ -3392,6 +3408,16 @@
       "815": "Normal",
       "816": "Crypto",
       "817": "Erl\u00F6st"
+    },
+    "808": {
+      "2321": "Normalform",
+      "2322": "Crypto",
+      "2323": "Erl\u00F6st"
+    },
+    "809": {
+      "2324": "Normalform",
+      "2325": "Crypto",
+      "2326": "Erl\u00F6st"
     }
   },
   "grunt_types": {
@@ -3446,12 +3472,72 @@
     "049": "Elektro",
     "050": "Elektro"
   },
+  "items": {
+    "0001": "Pok\u00E9ball",
+    "0002": "Superball",
+    "0003": "Hyperball",
+    "0004": "Masterball",
+    "0005": "Premierball",
+    "0101": "Trank",
+    "0102": "Supertrank",
+    "0103": "Hypertrank",
+    "0104": "Top-Trank",
+    "0201": "Beleber",
+    "0202": "Top-Beleber",
+    "0301": "Gl\u00FCcksei",
+    "0401": "Rauch",
+    "0402": "Incense Spicy",
+    "0403": "Incense Cool",
+    "0404": "Incense Floral",
+    "0501": "Lockmodul",
+    "0502": "Gletscher-Lockmodul",
+    "0503": "Moos-Lockmodul",
+    "0504": "Magnet-Lockmodul",
+    "0602": "X Attack",
+    "0603": "X Defense",
+    "0604": "X Miracle",
+    "0701": "Himmihbeere",
+    "0702": "Bluk Berry",
+    "0703": "Nanabbeere",
+    "0704": "Wepar Berry",
+    "0705": "Sananabeere",
+    "0706": "Goldene Himmihbeere",
+    "0707": "Golden Nanab",
+    "0708": "Silberne Sananabeere",
+    "0709": "Poffin",
+    "0801": "Camera",
+    "0901": "Brutmaschine",
+    "0902": "Brutmaschine",
+    "0903": "Super Brutmaschine",
+    "1001": "Pok\u00E9mon Storage Upgrade",
+    "1002": "Item Storage Upgrade",
+    "1101": "Sonnenstein",
+    "1102": "King-Stein",
+    "1103": "Metallmantel",
+    "1104": "Drachenhaut",
+    "1105": "Item Upgrade",
+    "1106": "Sinnoh-Stein",
+    "1107": "Unovah-Stein",
+    "1201": "Sofort TM",
+    "1202": "Lade TM",
+    "1301": "Sonderbonbon",
+    "1401": "Raid Pass",
+    "1402": "Paid Raid Pass",
+    "1403": "EX Raid Pass",
+    "1404": "Sternenst\u00FCck",
+    "1405": "Geschenk",
+    "1406": "Team-Medaillon",
+    "1501": "Mysteri\u00F6ses Teil",
+    "1502": "Rocket-Radar",
+    "1503": "Super-Rocket-Radar",
+    "1600": "Ticket"
+  },
   "leaders": {
     "000": "Professor Willow",
     "001": "Blanche",
     "002": "Candela",
     "003": "Spark"
-  }, 
+  },
   "lure_types": {
     "501": "Standard",
     "502": "Gletscher",
@@ -4372,7 +4458,7 @@
     "720": "Hoopa",
     "721": "Volcanion"
   },
-  "quest_types": {
+  "quest_reward_types": {
     "000": "Nicht festgelegt",
     "001": "Erfahrung",
     "002": "Artikel",
@@ -4402,6 +4488,12 @@
     "001": "Weisheit",
     "002": "Wagemut",
     "003": "Intuition"
+  },
+  "team_colors": {
+    "000": "Weiß",
+    "001": "Blau",
+    "002": "Rot",
+    "003": "Gelb"
   },
   "types": {
     "001": "Normal",

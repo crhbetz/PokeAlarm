@@ -12,8 +12,12 @@ log = logging.getLogger('Locale')
 # Locale object is used to get different translations in other languages
 class Locale(object):
 
+    name = 'en'
+
     # Load in the locale information from the specified json file
     def __init__(self, language):
+        # Set language name
+        self.name = language
         # Load in English as the default
         with open(os.path.join(get_path('locales'), 'en.json')) as f:
             default = json.loads(f.read())
@@ -46,6 +50,12 @@ class Locale(object):
         teams = info.get("teams", {})
         for id_, val in default["teams"].iteritems():
             self.__team_names[int(id_)] = teams.get(id_, val)
+
+        # Team ID -> Color
+        self.__team_colors = {}
+        team_colors = info.get("team_colors", {})
+        for id_, val in default["team_colors"].iteritems():
+            self.__team_colors[int(id_)] = team_colors.get(id_, val)
 
         # Team ID -> Team Leaders
         self.__leader_names = {}
@@ -91,6 +101,16 @@ class Locale(object):
                 self.__form_names[int(pkmn_id)][int(form_id)] = pkmn_forms.get(
                     form_id, form_name)
 
+        # Pokemon ID -> { Form ID -> Explicitly English Form Name }
+        self.__english_form_names = {}
+        english_forms = default.get('forms', {})
+        for pkmn_id, forms in default['forms'].iteritems():
+            self.__english_form_names[int(pkmn_id)] = {}
+            pkmn_forms = english_forms.get(pkmn_id, {})
+            for form_id, form_name in forms.iteritems():
+                self.__english_form_names[int(pkmn_id)][int(form_id)] = \
+                    pkmn_forms.get(form_id, form_name)
+
         # Rarity ID -> Rarity Name
         self.__rarity_names = {}
         rarity_names = info.get("rarity", {})
@@ -111,9 +131,16 @@ class Locale(object):
 
         # Quest Type ID -> Quest Type Name
         self.__quest_type_names = {}
-        quest_types = info.get('quest_types', {})
-        for id_, val in default['quest_types'].iteritems():
-            self.__quest_type_names[int(id_)] = quest_types.get(id_, val)
+        quest_reward_types = info.get('quest_reward_types', {})
+        for id_, val in default['quest_reward_types'].iteritems():
+            self.__quest_type_names[int(id_)] = \
+                quest_reward_types.get(id_, val)
+
+        # Item ID -> Item Name
+        self.__item_names = {}
+        items = info.get('items', {})
+        for id_, val in default['items'].iteritems():
+            self.__item_names[int(id_)] = items.get(id_, val)
 
         # Lure Type ID -> Lure Type Name
         self.__lure_type_names = {}
@@ -145,6 +172,9 @@ class Locale(object):
     def get_english_pokemon_name(self, pokemon_id):
         return self.__english_pokemon_names.get(pokemon_id, 'unknown')
 
+    def get_english_form_name(self, pokemon_id, form_id):
+        return self.__english_form_names.get(pokemon_id, {}).get(form_id, 'unknown')
+
     # Returns the name of the move associated with the move ID
     def get_move_name(self, move_id):
         return self.__move_names.get(move_id, 'unknown')
@@ -153,9 +183,13 @@ class Locale(object):
     def get_team_name(self, team_id):
         return self.__team_names.get(team_id, 'unknown')
 
-    # Returns the name of the team ledaer associated with the Team ID
+    # Returns the name of the team leader associated with the Team ID
     def get_leader_name(self, team_id):
         return self.__leader_names.get(team_id, 'unknown')
+	
+    # Returns the name of the color associated with the Team ID
+    def get_team_color(self, team_id):
+        return self.__team_colors.get(team_id, 'unknown')
 
     # Returns the name of the weather associated with the given ID
     def get_weather_name(self, weather_id):
@@ -202,3 +236,45 @@ class Locale(object):
 
     def get_grunt_gender_name(self, grunt_type_id):
         return self.__grunt_genders.get(grunt_type_id, 'unknown')
+
+    def adjective_placement(self):
+        """ true is before, false is after """
+        return self.name in ['en', 'de']
+
+    def get_quest_monster_reward(self, monster):
+        reward_template = '{form_with_space}{monster}'
+        if not self.adjective_placement():
+            reward_template = '{monster} {form}'
+        return reward_template.format(
+            # costume_with_space=
+            # (self.get_costume_name(monster.id, monster.costume) + ' '
+            #  if monster.costume != 0 else ''),
+            # costume=self.get_costume_name(monster.id, monster.costume),
+            form=self.get_form_name(monster['id'], monster['form']),
+            form_with_space=self.get_form_name(monster['id'], monster['form'])
+            + ' '
+            if monster['form'] != 0 and self.get_form_name(
+                monster['id'], monster['form']) not in ['Normal', 'Normale']
+            else '',
+            monster=self.get_pokemon_name(monster['id']))
+
+    def get_quest_item_reward(self, item):
+        item_name = self.get_item_name(item['id'])
+        reward_template = '{amount} {item}'
+        if not self.adjective_placement():
+            reward_template = '{item} {amount}'
+        return reward_template.format(
+            amount=item['amount'],
+            type=item['type'],
+            item=item_name)
+
+    def get_quest_generic_reward(self, reward_type_id, reward_amount):
+        reward_name = self.get_quest_type_name(reward_type_id)
+        if self.adjective_placement():
+            return '{reward_amount} {reward_name}'.format(
+                reward_amount=reward_amount, reward_name=reward_name)
+        return '{reward_name} {reward_amount}'.format(
+            reward_name=reward_name, reward_amount=reward_amount)
+
+    def get_item_name(self, item_id):
+        return self.__item_names.get(item_id, 'unknown')

@@ -150,7 +150,7 @@ def parse_settings(root_path):
         help='Verbosity of the root logger.')
     parser.add_argument(
         '-lf', '--log-file', type=parse_unicode, default='logs/pokealarm.log',
-        help="Path of a file to attach to a manager's logger.")
+        help="Path of a file to attach to a manager's logger. None to disable logging to file.")
     parser.add_argument(
         '-ls', '--log-size', type=int, default=100,
         help="Maximum size in mb of a log before rollover.")
@@ -259,7 +259,8 @@ def parse_settings(root_path):
     # Setup file logging
     if not os.path.exists(get_path('logs')):
         os.mkdir(get_path('logs'))
-    setup_file_handler(root_logger, args.log_file, args.log_size, args.log_ct)
+    if str(args.log_file).lower() != "none":
+        setup_file_handler(root_logger, args.log_file, args.log_size, args.log_ct)
 
     if args.debug:
         # Set everything to VERY VERBOSE
@@ -330,7 +331,7 @@ def parse_settings(root_path):
     # Build the managers
     for m_ct in range(args.manager_count):
         # TODO: Fix this mess better next time
-        log.info("----------- Setting up 'manager_0'")
+        log.info("----------- Setting up '{}'".format(args.manager_name[m_ct]))
         config['UNITS'] = get_from_list(args.units, m_ct, args.units[0])
         m = Manager(
             name=args.manager_name[m_ct],
@@ -386,7 +387,7 @@ def parse_settings(root_path):
             log.critical("Names of Manager processes must be unique "
                          + "(not case sensitive)! Process will exit.")
             sys.exit(1)
-        log.info("----------- Finished setting up 'manager_0'")
+        log.info("----------- Finished setting up '{}'".format(args.manager_name[m_ct]))
     for m_name in managers:
         managers[m_name].start()
 

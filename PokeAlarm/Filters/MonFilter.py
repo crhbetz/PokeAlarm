@@ -108,8 +108,6 @@ class MonFilter(BaseFilter):
             event_attribute='ultra_cp', eval_func=operator.le,
             limit=BaseFilter.parse_as_type(float, 'min_cp_ultra', data))
 
-
-
         # Form  TODO: names
         self.forms = self.evaluate_attribute(  # f.forms in m.form_id
             event_attribute='form_id', eval_func=operator.contains,
@@ -118,6 +116,18 @@ class MonFilter(BaseFilter):
         self.costumes = self.evaluate_attribute(  # f.costumes in m.costume_id
             event_attribute='costume_id', eval_func=operator.contains,
             limit=BaseFilter.parse_as_set(int, 'costume_ids', data))
+        
+        # Exclude Forms - f.forms_ids not contains m.ex_form_id
+        self.exclude_form_ids = self.evaluate_attribute(  #
+            event_attribute='form_id',
+            eval_func=lambda d, v: not operator.contains(d, v),
+            limit=BaseFilter.parse_as_set(int, 'exclude_forms', data))
+
+        # Exclude Costumes - f.costumes_ids not contains m.ex_costume_id
+        self.exclude_costume_ids = self.evaluate_attribute(  #
+            event_attribute='costume_id',
+            eval_func=lambda d, v: not operator.contains(d, v),
+            limit=BaseFilter.parse_as_set(int, 'exclude_costumes', data))
 
         # Quick Move
         self.quick_moves = self.evaluate_attribute(  # f.q_ms contains m.q_m
@@ -170,9 +180,6 @@ class MonFilter(BaseFilter):
 
         # Geofences
         self.geofences = BaseFilter.parse_as_list(str, 'geofences', data)
-
-        # Location
-        self.location = BaseFilter.parse_location(data)
 
         # Custom DTS
         self.custom_dts = BaseFilter.parse_as_dict(
