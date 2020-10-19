@@ -46,6 +46,8 @@ class StopFilter(BaseFilter):
 
         # Geofences
         self.geofences = BaseFilter.parse_as_list(str, 'geofences', data)
+        self.exclude_geofences = BaseFilter.parse_as_list(
+            str, 'exclude_geofences', data)
 
         # Location
         self.location = BaseFilter.parse_location(data)
